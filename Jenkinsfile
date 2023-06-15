@@ -1,25 +1,26 @@
 pipeline {
-    agent any 
+    agent any
 
     stages {
         stage('Prepare') {
             steps {
                 echo 'Preparing...'
                 sh 'python3 -m venv venv'
-                sh '. venv/bin/activate'
-                sh 'python3 -m pip install -r requirements.txt --quiet'
+                bat '.\\venv\\Scripts\\activate'
             }
         }
+
         stage('Test') {
             steps {
                 echo 'Testing...'
-                sh 'python3 -m unittest'
+                sh 'pip install pytest'
+                sh 'pytest'
             }
         }
+
         stage('Deploy') {
             steps {
                 echo 'Deploying...'
-                sh 'echo "Here you would add steps to deploy your application"'
             }
         }
     }
