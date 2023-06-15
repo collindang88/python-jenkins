@@ -5,16 +5,15 @@ pipeline {
         stage('Prepare') {
             steps {
                 echo 'Preparing...'
-                sh 'python3 -m venv venv'
-                bat '.\\venv\\Scripts\\activate'
+                bat 'python -m venv venv'
             }
         }
 
         stage('Test') {
             steps {
                 echo 'Testing...'
-                sh 'pip install pytest'
-                sh 'pytest'
+                bat '.\\venv\\Scripts\\python -m pip install pytest'
+                bat '.\\venv\\Scripts\\python -m pytest'
             }
         }
 
